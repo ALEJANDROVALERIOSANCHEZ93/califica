@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html--> 
+﻿<!DOCTYPE html--> 
 <html>
 <head>
 
@@ -54,9 +54,10 @@
          var resp=$("#respuesta");
          resp.html(datos);
      }
-    });
-     $(document).ready(function operaciones(){
-var btnSumar=$("#suma");
+     
+     
+     
+     var btnSumar=$("#suma");
 btnSumar.click(function suma(){
 var n1=parseInt($("#Parcial1").val());
 var n2=parseInt($("#Parcial2").val());
@@ -65,20 +66,13 @@ var n4=parseInt($("#Parcial4").val());
 var result=(n1+n2+n3+n4)/4;
 var r=$("#Promedio");
 r.val(result);
-});
 
+     
+     
+    });
+     
 
-
-});
-
-
-//revisar
-
-
-
-   $(document).ready(function inicio2(){
-    // 
-     var btnEnvio2=$("#enviar2");
+var btnEnvio2=$("#enviar2");
      btnEnvio2.click(function enviarDatos(){
          var nom=$("#Nombre").val();
           var app=$("#ApellidoP").val();
@@ -99,7 +93,17 @@ r.val(result);
          var resp2=$("#respuesta2");
          resp2.html(datos);
      }
-    });
+
+
+
+
+});
+
+
+//revisar
+
+
+
   </script>
 
 
