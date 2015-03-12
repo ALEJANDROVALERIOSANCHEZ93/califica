@@ -1,0 +1,205 @@
+﻿﻿<!DOCTYPE html--> 
+<html>
+<head>
+
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<title>Aplicacion Movil </title>
+<style type="text/css">
+#navegador ul{
+   list-style-type: none;
+   text-align: center;
+}
+#navegador li{
+   display: inline;
+   text-align: center;
+   margin: 0 10px 0 0;
+}
+#navegador li a {
+   padding: 2px 7px 2px 7px;
+   color: red;
+   background-color: yelow;
+   border: 1px solid yelow;
+   text-decoration: yelow;
+}
+#navegador li a:hover{
+   background-color: yelow;
+   color: yelow;
+}
+  </style>
+  <script>
+          $(document).ready(function inicio(){
+    // 
+     var btnEnvio=$("#enviar");
+     btnEnvio.click(function enviarDatos(){
+         var ma=$("#Matricula").val();
+          var p1=$("#Parcial1").val();
+           var p2=$("#Parcial2").val();
+           var p3=$("#Parcial3").val();
+           var p4=$("#Parcial4").val();
+           var pro=$("#Promedio").val();
+           
+      $.ajax({
+          type:"POST",
+          url:"http://alejandro1993.260mb.net/calificacionregistrada.php",
+          data:"Matricula="+ma+"&Parcial1="+p1+"&Parcial2="+p2+"&Parcial3="+p3+"&Parcial4="+p4+"&Promedio="+pro,
+          success:recepcion
+      })
+     });
+     function recepcion(datos){
+      //   alert("listo:"+datos);
+         var resp=$("#respuesta");
+         resp.html(datos);
+     }
+    });
+     $(document).ready(function operaciones(){
+var btnSumar=$("#suma");
+btnSumar.click(function suma(){
+var n1=parseInt($("#Parcial1").val());
+var n2=parseInt($("#Parcial2").val());
+var n3=parseInt($("#Parcial3").val());
+var n4=parseInt($("#Parcial4").val());
+var result=(n1+n2+n3+n4)/4;
+var r=$("#Promedio");
+r.val(result);
+});
+
+
+
+});
+
+
+//revisar
+
+
+
+   $(document).ready(function inicio2(){
+    // 
+     var btnEnvio2=$("#enviar2");
+     btnEnvio2.click(function enviarDatos(){
+         var nom=$("#Nombre").val();
+          var app=$("#ApellidoP").val();
+           var apm=$("#ApellidoM").val();
+           var ma=$("#Matricula1").val();
+           var se=$("#Semestre").val();
+           
+           
+      $.ajax({
+          type:"POST",
+          url:"http://alejandro1993.260mb.net/AlumnoRegistrado.php",
+          data:"Nombre="+nom+"&ApellidoP="+app+"&ApellidoM="+apm+"&Matricula1="+ma+"&Semestre="+se,
+          success:recepcion
+      });
+     });
+     function recepcion(datos){
+      //   alert("listo:"+datos);
+         var resp2=$("#respuesta2");
+         resp2.html(datos);
+     }
+    });
+  </script>
+
+
+</head>
+<body>
+<div data-role="page" id="Principal" data-theme="a">
+    <div data-role="header">
+        <p style="text-align:center">
+<br>EXAMEN DE DISPOSITIVOS MOVILES<br><br>ALEJANDRO VALERIO SANCHEZ<br><br>INGENIERIA EN SISTEMAS COMPUTACIONALES<br><br>11940064<br><br></p>
+    </div>
+    <div data-role="Content">
+        
+        
+           <div id="navegador">
+            <ul>
+             <li><br><br><a href="#Segunda">REGISTRO DE CALIFICACIONES</a><br><br></li>
+            <li><br><br><a href="#Tercera">REGISTRO DE ALUMNOS</a><br><br></li>
+           
+            </ul>
+            </div>
+                   
+        </div>
+    <div data-role="footer">
+        <p style="text-align:center;font-size: 15px;">INSTITUTO TECNOLOGICO SUPERIOR DE LIBRES</p>
+    </div>
+</div>
+
+    
+<div data-role="page" id="Segunda" data-theme="a">
+    <div data-role="header">
+        <p style="text-align:center">BIEMBENIDO AL REGISTRO DE CALIFICACIONES<br>ALEJANDRO VALERIO SANCHEZ</p>
+    </div>
+    <div data-role="Content">
+        
+        <form method="POST" action="calificacionregistrada.php">
+            <div class="ui-field-contain">
+                 <label for="Matricula">Matricula: </label>
+                <input type="text" value="" name="Matricula" id='Matricula'/><br><br>
+                <label for="Parcial1">Parcial 1: </label>
+                <input type="text" value="" name="Parcial1" id='Parcial1'/> <br>
+                <label for="Parcial2">Parcial 2: </label>
+                <input type="text" value="" name="Parcial2" id='Parcial2'/><br>
+                <label for="Parcial3">Parcial 3: </label>
+                <input type="text" value="" name="Parcial3" id='Parcial3'/><br>
+                <label for="Parcial4">Parcial 4: </label>
+                <input type="text" value="" name="Parcial4" id='Parcial4'/><br>
+                <label for="Promedio">Promedio: </label>
+                <input type="text" value="" name="Promedio" id="Promedio"/><br>
+
+                <input type="button" value="Promedio" id="suma"/>
+               
+            </div>
+            <input type="button"name="enviar" id="enviar" value="Enviar">
+            <div id="navegador">
+            <ul>
+            </ul>
+            </div>
+        </form>
+        <div id="respuesta">
+            
+        </div>
+    </div>
+</div>    
+
+ 
+ <div data-role="page" id="Tercera" data-theme="a">
+    <div data-role="header">
+        <p style="text-align:center">BIEMBENIDO AL REGISTRO DE ESTUDIANTES<br>ALEJANDRO VALERIO SANCHEZ</p>
+    </div>
+    <div data-role="Content">
+        
+        <form method="POST" action="AlumnoRegistrado.php">
+            
+    <label for="Nombre">Nombre: </label>
+    <input type="text" value="" name="Nombre" id='Nombre'/><br>
+
+    <label for="ApellidoP">Apellido Paterno: </label>
+    <input type="text" name="ApellidoP" id='ApellidoP'/><br>
+    
+    <label for="ApellidoM">Apellido Materno: </label>
+    <input type="text" name="ApellidoM" id='ApellidoM'/><br>
+    
+    <label for="Matricula1">Matricula: </label>
+    <input type="text" value="" name="Matricula1" id='Matricula1'/><br>
+
+
+      <label for="Semestre">Semestre: </label>
+      <input type="number"  min="1" max="9" step="1" name="Semestre" id="Semestre"/><br>
+      
+            <input type="button" name="enviar2" id="enviar2" value="Enviar">
+            <div id="navegador">
+            <ul>
+          
+            </ul>
+            </div>
+        </form>
+        <div id="respuesta2">
+            
+        </div>
+    </div>
+    </div>
+</body>
+</html>
